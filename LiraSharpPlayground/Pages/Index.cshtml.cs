@@ -48,14 +48,22 @@ public class IndexModel(ILogger<IndexModel> logger) : PageModel
         {
             Document = doc
         };
-        var result = await Lira.Provider.ProcessInput(Input);
 
-        if (result is ProcessStringResult stringResult)
-        {
-            Output = stringResult.Value;
-            return;
+        var resultLines = new List<string>();
+
+        for (var i = 0; i < 10; i++) {
+            var result = await Lira.Provider.ProcessInput(Input);
+
+            if (result is ProcessStringResult stringResult)
+            {
+                resultLines.Add(stringResult.Value);
+            }
+            else
+            {
+                Debugger.Break();
+            }
         }
 
-        Debugger.Break();
+        Output = string.Join("\n", resultLines);
     }
 }
