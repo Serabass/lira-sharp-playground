@@ -7,6 +7,7 @@ WORKDIR /app
 
 # Копируем файлы проекта и восстанавливаем зависимости
 COPY LiraSharpPlayground/LiraSharpPlayground.csproj ./LiraSharpPlayground/LiraSharpPlayground.csproj
+COPY lira-sharp-playground.sln ./lira-sharp-playground.sln
 
 RUN dotnet restore
 
@@ -18,6 +19,7 @@ WORKDIR /app
 # Копируем все остальные файлы проекта и собираем приложение
 COPY --from=vendor /app .
 COPY LiraSharpPlayground ./LiraSharpPlayground
+COPY lira-sharp-playground.sln ./lira-sharp-playground.sln
 
 RUN dotnet publish -c Release -o out
 
