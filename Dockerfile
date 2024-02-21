@@ -32,7 +32,7 @@ WORKDIR /app
 COPY --from=build /app/out ./
 
 # Указываем порт, на котором будет работать приложение
-EXPOSE 80
+EXPOSE 8080
 
 # Запускаем приложение
 ENTRYPOINT ["dotnet", "LiraSharpPlayground.dll"]
