@@ -28,6 +28,7 @@
             </div>
         </div>
     </div>
+    <hr />
     <div class="row">
         <div class="col">
             <input type="submit" value="Submit" class="btn btn-primary" />
@@ -49,21 +50,7 @@
     require(["vs/editor/editor.main"], () => {
         window._liraCode = monaco.editor.create(document.getElementById('lira'), {
             value:
-                `#provider "playground"
-
-~i"(hello+|bonjour)$" => [
-  - hello
-  - hola
-  - bonjour
-  - salut
-  - привет :w {
-    :w = [
-      - мир
-      - жир
-    ]
-  }
-]
-`,
+                `@Html.Raw(Model.LiraCode)`,
             language: 'go',
         });
         monaco.editor.create(document.getElementById('output'), {

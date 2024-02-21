@@ -11,7 +11,21 @@ public class IndexModel(ILogger<IndexModel> logger) : PageModel
     private readonly ILogger<IndexModel> _logger = logger;
 
     [BindProperty(SupportsGet = true)]
-    public string LiraCode { get; set; } = "";
+    public string LiraCode { get; set; } = @"#provider ""playground""
+
+~i\""(hello+|bonjour)$\"" => [
+  - hello
+  - hola
+  - bonjour
+  - salut
+  - привет :w {
+    :w = [
+      - мир
+      - жир
+    ]
+  }
+]
+";
 
     [BindProperty(SupportsGet = true)]
     public string Input { get; set; } = "hello";
@@ -26,7 +40,6 @@ public class IndexModel(ILogger<IndexModel> logger) : PageModel
 
     public async void OnPost()
     {
-        _logger.LogInformation("LiraCode: {LiraCode}", LiraCode);
         var doc = new LiraParser
         {
             Path = ""
